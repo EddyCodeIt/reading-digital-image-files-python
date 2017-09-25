@@ -1,27 +1,31 @@
 import gzip, struct
 
-myFile = gzip.open('data/t10k-images-idx3-ubyte.gz','rb')
+
 # pointer position starts at start.
 # everytime .read() function is called, pointer possition 
 # stays where .read() stoped. 
-magicNum = myFile.read(4)
 
-#  firstbyte var would print as: b'\x00\x00\x08\x03'
-# In binary, this is: 00000000 00000000 00000100 00000011
+def read_labels_from_file(filename):
+    with gzip.open(filename,'rb') as myFile:
 
-print(type(magicNum))
-print(magicNum)
+        magicNum = myFile.read(4)
 
-print("Magic Number: ",int.from_bytes(magicNum, 'big'))
+        #  firstbyte var would print as: b'\x00\x00\x08\x03'
+        # In binary, this is: 00000000 00000000 00000100 00000011
 
-# each image is 28 by 28 bytes, 10 000 images in a file + bytes for meta date about a file
-# print(28*28*10000+4+4+4+4)
+        print(type(magicNum))
+        print(magicNum)
 
-no_lbl = myFile.read(4)
-no_lbl = int.from_bytes(no_lbl, 'big')
-print("Number of labels: ", no_lbl)
+        print("Magic Number: ",int.from_bytes(magicNum, 'big'))
 
-labels = [myFile.read(1) for i in range(no_lbl)]
-labels = [int.from_bytes(label, 'big') for label in labels]
+        no_lbl = myFile.read(4) # read how many labels in the file 
+        no_lbl = int.from_bytes(no_lbl, 'big') # convert from bytes into ints
+        print("Number of labels: ", no_lbl)
 
-print(labels)
+        labels = [myFile.read(1) for i in range(no_lbl)] # read labels byte by byte
+        labels = [int.from_bytes(label, 'big') for label in labels] # convert into ints
+
+        return labels
+
+train_labels = read_labels_from_file('data/train-labels-idx1-ubyte.gz')
+test_labels = read_labels_from_file('data/t10k-labels-idx1-ubyte.gz')
