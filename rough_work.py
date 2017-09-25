@@ -1,4 +1,5 @@
-import gzip, struct
+import gzip, struct, numpy
+import PIL.Image as pilImg
 
 
 # pointer position starts at start.
@@ -61,4 +62,15 @@ def read_images_from_file(filename):
     return images
 
 train_images = read_images_from_file('data/train-images-idx3-ubyte.gz')
-test_images = read_images_from_file('data/t10k-images-idx3-ubyte.gz')
+# test_images = read_images_from_file('data/t10k-images-idx3-ubyte.gz')
+
+
+for row in train_images[4999]:
+    for col in row:
+        print('.' if col <= 128 else '#', end = '') 
+    print()
+
+img = pilImg.fromarray(numpy.array(train_images[4999]))
+img = img.convert('RGB')
+img.show()
+img.save('2.png')
