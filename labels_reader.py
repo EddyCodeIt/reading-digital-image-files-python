@@ -4,8 +4,8 @@ import gzip
 # everytime .read() function is called, pointer possition 
 # stays where .read() stopped. 
 
-def read_label_training_sets(filename):
-    with gzip.open(filename, "rb") as labels_file:
+def read_label_files(filepath):
+    with gzip.open(filepath, "rb") as labels_file:
         
         magicNum = labels_file.read(4)
         print("Magic Number: ",int.from_bytes(magicNum, 'big'))
@@ -20,5 +20,7 @@ def read_label_training_sets(filename):
         opt = input("Would you like to print array of labels? y/n: ")
         if(opt == "y"): print("Labels: ", labels)
 
+    return labels
 
-# read_label_training_sets('data/train-labels-idx1-ubyte.gz') # for testing
+# print(len(read_label_files('data/train-labels-idx1-ubyte.gz'))) # for testing
+

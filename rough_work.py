@@ -1,4 +1,4 @@
-import gzip, numpy, labels_reader
+import gzip, numpy
 import PIL.Image as pilImg
 
 
