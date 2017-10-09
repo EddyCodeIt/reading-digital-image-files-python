@@ -10,3 +10,5 @@ Reading digital image files byte by byte and interpret it with python
 that correspond to a particular number image.
                        
 * images_reader.py - a python module with a method to read images files that return array of images.
+
+* image_saver.py - module with a methods to handle saving of each individual image to a file, giving it appropriate name and file extension. 
