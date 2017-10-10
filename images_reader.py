@@ -25,6 +25,7 @@ def read_image_files(filepath):
                     # Each index in array of rows holds array of columns that is correspondant 
                     # to that image. 
 
+        print("\nLoading images... This might take a while...")
         for i in range(num_img):
             rows = []
             for r in range(num_rows):
@@ -34,6 +35,7 @@ def read_image_files(filepath):
                 rows.append(cols)
             images.append(rows)
 
+    print("Returning array of images...\n")
     return images
 
 

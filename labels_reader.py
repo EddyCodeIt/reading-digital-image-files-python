@@ -17,9 +17,7 @@ def read_label_files(filepath):
         labels = [labels_file.read(1) for i in range(no_lbls)] # read labels byte by byte
         labels = [int.from_bytes(label, 'big') for label in labels] # convert into ints
 
-        opt = input("Would you like to print array of labels? y/n: ")
-        if(opt == "y"): print("Labels: ", labels)
-
+    print("Returning array of labels...\n")
     return labels
 
 # print(len(read_label_files('data/train-labels-idx1-ubyte.gz'))) # for testing
